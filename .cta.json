@@ -1,0 +1,25 @@
+{
+  "projectName": "grahok-landing",
+  "mode": "file-router",
+  "typescript": true,
+  "packageManager": "pnpm",
+  "tailwind": true,
+  "addOnOptions": {
+    "prisma": {
+      "database": "postgres"
+    }
+  },
+  "git": true,
+  "version": 1,
+  "framework": "react-cra",
+  "chosenAddOns": [
+    "nitro",
+    "start",
+    "prisma",
+    "form",
+    "shadcn",
+    "table",
+    "better-auth",
+    "tanstack-query"
+  ]
+}
