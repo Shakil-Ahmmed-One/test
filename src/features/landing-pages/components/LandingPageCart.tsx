@@ -25,42 +25,40 @@ export default function LandingPageCart() {
   const { cartItems } = useLandingPage();
 
   return (
-    <section className="container mx-auto py-6">
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <IconShoppingBag className="h-5 w-5" />
-            Shopping Cart
-            {cartItems.length > 0 && (
-              <Badge variant="secondary">{cartItems.length} item(s)</Badge>
-            )}
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          {cartItems.length === 0 ? (
-            <Empty className="border rounded-lg p-8">
-              <EmptyHeader>
-                <EmptyMedia>
-                  <IconPackage className="h-12 w-12 text-muted-foreground" />
-                </EmptyMedia>
-              </EmptyHeader>
-              <EmptyContent>
-                <EmptyTitle className="text-lg">Your Cart is Empty</EmptyTitle>
-                <EmptyDescription>
-                  Add items to your cart to show here.
-                </EmptyDescription>
-              </EmptyContent>
-            </Empty>
-          ) : (
-            <div className="space-y-4">
-              {cartItems.map((item) => (
-                <CartItem key={item.product.id} cartItem={item} />
-              ))}
-            </div>
+    <Card>
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          <IconShoppingBag className="h-5 w-5" />
+          Shopping Cart
+          {cartItems.length > 0 && (
+            <Badge variant="secondary">{cartItems.length} item(s)</Badge>
           )}
-        </CardContent>
-      </Card>
-    </section>
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-6">
+        {cartItems.length === 0 ? (
+          <Empty className="border rounded-lg p-8">
+            <EmptyHeader>
+              <EmptyMedia>
+                <IconPackage className="h-12 w-12 text-muted-foreground" />
+              </EmptyMedia>
+            </EmptyHeader>
+            <EmptyContent>
+              <EmptyTitle className="text-lg">Your Cart is Empty</EmptyTitle>
+              <EmptyDescription>
+                Add items to your cart to show here.
+              </EmptyDescription>
+            </EmptyContent>
+          </Empty>
+        ) : (
+          <div className="space-y-4">
+            {cartItems.map((item) => (
+              <CartItem key={item.product.id} cartItem={item} />
+            ))}
+          </div>
+        )}
+      </CardContent>
+    </Card>
   );
 }
 

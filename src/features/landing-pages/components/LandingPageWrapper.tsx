@@ -9,7 +9,7 @@ export default function LandingPageWrapper() {
     <main className="p-4 space-y-6">
       <ProductsCarousel />
       <section className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
-        <div className="space-y-6">
+        <div className="space-y-12">
           <LandingPageCart />
           <CustomerInformation />
         </div>
