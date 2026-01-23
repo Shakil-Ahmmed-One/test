@@ -7,8 +7,85 @@ datasource db {
   provider = "postgresql"
 }
 
-model Todo {
-  id        Int      @id @default(autoincrement())
-  title     String
+// PRODUCT
+model Product {
+  id            Int      @id @default(autoincrement()) @map("_id")
+  name          String   @unique
+  images        String[]
+  purchasePrice Int
+  sellPrice     Int
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Inverse relation: A product can appear in many OrderItems
+  orderItems          OrderItem[]
+  landingPageProducts LandingPageProduct[]
+}
+
+// Landing Page Product
+model LandingPageProduct {
+  id Int @id @default(autoincrement()) @map("_id")
+
+  // Connect to Product
+  productId   Int
+  product     Product @relation(fields: [productId], references: [id])
+  description String
+  faqs        Json[]
+
+  // Connect to Landing Page
+  landingPageId Int
+  landingPage   LandingPage @relation(fields: [landingPageId], references: [id], onDelete: Cascade)
+}
+
+model LandingPage {
+  id                  Int                  @id @default(autoincrement()) @map("_id")
+  name                String               @unique
+  slug                String               @unique
+  landingPageProducts LandingPageProduct[]
+
+  isActive Boolean @default(true)
+
+  // Connect to Order
+  orders Order[]
+
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// 1. ORDER ITEM
+model OrderItem {
+  id Int @id @default(autoincrement()) @map("_id")
+
+  // Connect to Order
+  orderId Int
+  order   Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  // Connect to Product
+  productId Int
+  product   Product @relation(fields: [productId], references: [id])
+
+  // Details with snapshot
+  name     String
+  quantity Int    @default(1)
+  price    Int
+}
+
+// 3. ORDER
+model Order {
+  id Int @id @default(autoincrement()) @map("_id")
+  
+  customer Json
+
+  // The clean relation
+  orderItems OrderItem[]
+
+  // Connect to Landing Page
+  landingPageId Int
+  landingPage   LandingPage? @relation(fields: [landingPageId], references: [id])
+
+  totalPrice     Int
+  shippingCharge Int      @default(0)
+  orderStatus    String   @default("pending")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 }
