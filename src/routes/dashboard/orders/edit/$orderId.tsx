@@ -7,6 +7,9 @@ import { Suspense } from "react";
 export const Route = createFileRoute("/dashboard/orders/edit/$orderId")({
   head: () => generateMetadata({ title: "Edit Order" }),
   component: RouteComponent,
+  params: {
+    parse: ({ orderId }) => ({ orderId: Number(orderId) }),
+  },
 });
 
 function RouteComponent() {

@@ -10,6 +10,9 @@ export const Route = createFileRoute("/dashboard/orders/view/$orderId")({
       title: "Order Details",
     }),
   component: RouteComponent,
+  params: {
+    parse: ({ orderId }) => ({ orderId: Number(orderId) }),
+  },
 });
 
 function RouteComponent() {
