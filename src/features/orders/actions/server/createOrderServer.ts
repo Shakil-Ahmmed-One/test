@@ -1,6 +1,9 @@
 import { prisma } from "@/db";
 import { createServerFn } from "@tanstack/react-start";
-import { createOrEditOrderSchema, customerDetailsInOrderSchema } from "../../types/orderTypes";
+import {
+  createOrEditOrderSchema,
+  customerDetailsInOrderSchema,
+} from "../../types/orderTypes";
 
 export const createOrderServer = createServerFn()
   .inputValidator(createOrEditOrderSchema)
@@ -65,8 +68,7 @@ export const createOrderServer = createServerFn()
         totalPrice: calculatedTotalPrice,
         shippingCharge: data.shippingCharge,
         orderStatus: data.orderStatus,
-
-        // TODO: Landing Page ID tracking (if applicable)
+        landingPageId: data.landingPageId,
 
         // The Magic Part: Creating the relations
         // Prisma will create these OrderItem records AND insert the new order.id into them automatically.

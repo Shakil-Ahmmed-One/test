@@ -84,7 +84,7 @@ model Order {
   orderItems OrderItem[]
 
   // Connect to Landing Page
-  landingPageId Int
+  landingPageId Int?
   landingPage   LandingPage? @relation(fields: [landingPageId], references: [id])
 
   totalPrice     Int
