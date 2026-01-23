@@ -9,12 +9,39 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as DashboardRouteRouteImport } from './routes/dashboard/route'
+import { Route as publicRouteRouteImport } from './routes/(public)/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as authSignUpIndexRouteImport } from './routes/(auth)/sign-up/index'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
+import { Route as publicLandingPageLandingPageSlugRouteImport } from './routes/(public)/landing-page/$landingPageSlug'
+import { Route as DashboardProductsAllIndexRouteImport } from './routes/dashboard/products/all/index'
+import { Route as DashboardProductsAddIndexRouteImport } from './routes/dashboard/products/add/index'
+import { Route as DashboardOrdersAllIndexRouteImport } from './routes/dashboard/orders/all/index'
+import { Route as DashboardOrdersAddIndexRouteImport } from './routes/dashboard/orders/add/index'
+import { Route as DashboardLandingPagesAllIndexRouteImport } from './routes/dashboard/landing-pages/all/index'
+import { Route as DashboardLandingPagesAddIndexRouteImport } from './routes/dashboard/landing-pages/add/index'
+import { Route as DashboardProductsEditProductIdRouteImport } from './routes/dashboard/products/edit/$productId'
+import { Route as DashboardOrdersViewOrderIdRouteImport } from './routes/dashboard/orders/view/$orderId'
+import { Route as DashboardOrdersEditOrderIdRouteImport } from './routes/dashboard/orders/edit/$orderId'
 
+const DashboardRouteRoute = DashboardRouteRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const publicRouteRoute = publicRouteRouteImport.update({
+  id: '/(public)',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const authSignUpIndexRoute = authSignUpIndexRouteImport.update({
+  id: '/(auth)/sign-up/',
+  path: '/sign-up/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
@@ -22,40 +49,203 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   path: '/api/auth/$',
   getParentRoute: () => rootRouteImport,
 } as any)
+const publicLandingPageLandingPageSlugRoute =
+  publicLandingPageLandingPageSlugRouteImport.update({
+    id: '/landing-page/$landingPageSlug',
+    path: '/landing-page/$landingPageSlug',
+    getParentRoute: () => publicRouteRoute,
+  } as any)
+const DashboardProductsAllIndexRoute =
+  DashboardProductsAllIndexRouteImport.update({
+    id: '/products/all/',
+    path: '/products/all/',
+    getParentRoute: () => DashboardRouteRoute,
+  } as any)
+const DashboardProductsAddIndexRoute =
+  DashboardProductsAddIndexRouteImport.update({
+    id: '/products/add/',
+    path: '/products/add/',
+    getParentRoute: () => DashboardRouteRoute,
+  } as any)
+const DashboardOrdersAllIndexRoute = DashboardOrdersAllIndexRouteImport.update({
+  id: '/orders/all/',
+  path: '/orders/all/',
+  getParentRoute: () => DashboardRouteRoute,
+} as any)
+const DashboardOrdersAddIndexRoute = DashboardOrdersAddIndexRouteImport.update({
+  id: '/orders/add/',
+  path: '/orders/add/',
+  getParentRoute: () => DashboardRouteRoute,
+} as any)
+const DashboardLandingPagesAllIndexRoute =
+  DashboardLandingPagesAllIndexRouteImport.update({
+    id: '/landing-pages/all/',
+    path: '/landing-pages/all/',
+    getParentRoute: () => DashboardRouteRoute,
+  } as any)
+const DashboardLandingPagesAddIndexRoute =
+  DashboardLandingPagesAddIndexRouteImport.update({
+    id: '/landing-pages/add/',
+    path: '/landing-pages/add/',
+    getParentRoute: () => DashboardRouteRoute,
+  } as any)
+const DashboardProductsEditProductIdRoute =
+  DashboardProductsEditProductIdRouteImport.update({
+    id: '/products/edit/$productId',
+    path: '/products/edit/$productId',
+    getParentRoute: () => DashboardRouteRoute,
+  } as any)
+const DashboardOrdersViewOrderIdRoute =
+  DashboardOrdersViewOrderIdRouteImport.update({
+    id: '/orders/view/$orderId',
+    path: '/orders/view/$orderId',
+    getParentRoute: () => DashboardRouteRoute,
+  } as any)
+const DashboardOrdersEditOrderIdRoute =
+  DashboardOrdersEditOrderIdRouteImport.update({
+    id: '/orders/edit/$orderId',
+    path: '/orders/edit/$orderId',
+    getParentRoute: () => DashboardRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRouteRouteWithChildren
+  '/landing-page/$landingPageSlug': typeof publicLandingPageLandingPageSlugRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/sign-up/': typeof authSignUpIndexRoute
+  '/dashboard/orders/edit/$orderId': typeof DashboardOrdersEditOrderIdRoute
+  '/dashboard/orders/view/$orderId': typeof DashboardOrdersViewOrderIdRoute
+  '/dashboard/products/edit/$productId': typeof DashboardProductsEditProductIdRoute
+  '/dashboard/landing-pages/add/': typeof DashboardLandingPagesAddIndexRoute
+  '/dashboard/landing-pages/all/': typeof DashboardLandingPagesAllIndexRoute
+  '/dashboard/orders/add/': typeof DashboardOrdersAddIndexRoute
+  '/dashboard/orders/all/': typeof DashboardOrdersAllIndexRoute
+  '/dashboard/products/add/': typeof DashboardProductsAddIndexRoute
+  '/dashboard/products/all/': typeof DashboardProductsAllIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRouteRouteWithChildren
+  '/landing-page/$landingPageSlug': typeof publicLandingPageLandingPageSlugRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/sign-up': typeof authSignUpIndexRoute
+  '/dashboard/orders/edit/$orderId': typeof DashboardOrdersEditOrderIdRoute
+  '/dashboard/orders/view/$orderId': typeof DashboardOrdersViewOrderIdRoute
+  '/dashboard/products/edit/$productId': typeof DashboardProductsEditProductIdRoute
+  '/dashboard/landing-pages/add': typeof DashboardLandingPagesAddIndexRoute
+  '/dashboard/landing-pages/all': typeof DashboardLandingPagesAllIndexRoute
+  '/dashboard/orders/add': typeof DashboardOrdersAddIndexRoute
+  '/dashboard/orders/all': typeof DashboardOrdersAllIndexRoute
+  '/dashboard/products/add': typeof DashboardProductsAddIndexRoute
+  '/dashboard/products/all': typeof DashboardProductsAllIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/(public)': typeof publicRouteRouteWithChildren
+  '/dashboard': typeof DashboardRouteRouteWithChildren
+  '/(public)/landing-page/$landingPageSlug': typeof publicLandingPageLandingPageSlugRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/(auth)/sign-up/': typeof authSignUpIndexRoute
+  '/dashboard/orders/edit/$orderId': typeof DashboardOrdersEditOrderIdRoute
+  '/dashboard/orders/view/$orderId': typeof DashboardOrdersViewOrderIdRoute
+  '/dashboard/products/edit/$productId': typeof DashboardProductsEditProductIdRoute
+  '/dashboard/landing-pages/add/': typeof DashboardLandingPagesAddIndexRoute
+  '/dashboard/landing-pages/all/': typeof DashboardLandingPagesAllIndexRoute
+  '/dashboard/orders/add/': typeof DashboardOrdersAddIndexRoute
+  '/dashboard/orders/all/': typeof DashboardOrdersAllIndexRoute
+  '/dashboard/products/add/': typeof DashboardProductsAddIndexRoute
+  '/dashboard/products/all/': typeof DashboardProductsAllIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/api/auth/$'
+  fullPaths:
+    | '/'
+    | '/dashboard'
+    | '/landing-page/$landingPageSlug'
+    | '/api/auth/$'
+    | '/sign-up/'
+    | '/dashboard/orders/edit/$orderId'
+    | '/dashboard/orders/view/$orderId'
+    | '/dashboard/products/edit/$productId'
+    | '/dashboard/landing-pages/add/'
+    | '/dashboard/landing-pages/all/'
+    | '/dashboard/orders/add/'
+    | '/dashboard/orders/all/'
+    | '/dashboard/products/add/'
+    | '/dashboard/products/all/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/api/auth/$'
-  id: '__root__' | '/' | '/api/auth/$'
+  to:
+    | '/'
+    | '/dashboard'
+    | '/landing-page/$landingPageSlug'
+    | '/api/auth/$'
+    | '/sign-up'
+    | '/dashboard/orders/edit/$orderId'
+    | '/dashboard/orders/view/$orderId'
+    | '/dashboard/products/edit/$productId'
+    | '/dashboard/landing-pages/add'
+    | '/dashboard/landing-pages/all'
+    | '/dashboard/orders/add'
+    | '/dashboard/orders/all'
+    | '/dashboard/products/add'
+    | '/dashboard/products/all'
+  id:
+    | '__root__'
+    | '/'
+    | '/(public)'
+    | '/dashboard'
+    | '/(public)/landing-page/$landingPageSlug'
+    | '/api/auth/$'
+    | '/(auth)/sign-up/'
+    | '/dashboard/orders/edit/$orderId'
+    | '/dashboard/orders/view/$orderId'
+    | '/dashboard/products/edit/$productId'
+    | '/dashboard/landing-pages/add/'
+    | '/dashboard/landing-pages/all/'
+    | '/dashboard/orders/add/'
+    | '/dashboard/orders/all/'
+    | '/dashboard/products/add/'
+    | '/dashboard/products/all/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  publicRouteRoute: typeof publicRouteRouteWithChildren
+  DashboardRouteRoute: typeof DashboardRouteRouteWithChildren
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
+  authSignUpIndexRoute: typeof authSignUpIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(public)': {
+      id: '/(public)'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof publicRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(auth)/sign-up/': {
+      id: '/(auth)/sign-up/'
+      path: '/sign-up'
+      fullPath: '/sign-up/'
+      preLoaderRoute: typeof authSignUpIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/auth/$': {
@@ -65,12 +255,125 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/(public)/landing-page/$landingPageSlug': {
+      id: '/(public)/landing-page/$landingPageSlug'
+      path: '/landing-page/$landingPageSlug'
+      fullPath: '/landing-page/$landingPageSlug'
+      preLoaderRoute: typeof publicLandingPageLandingPageSlugRouteImport
+      parentRoute: typeof publicRouteRoute
+    }
+    '/dashboard/products/all/': {
+      id: '/dashboard/products/all/'
+      path: '/products/all'
+      fullPath: '/dashboard/products/all/'
+      preLoaderRoute: typeof DashboardProductsAllIndexRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
+    '/dashboard/products/add/': {
+      id: '/dashboard/products/add/'
+      path: '/products/add'
+      fullPath: '/dashboard/products/add/'
+      preLoaderRoute: typeof DashboardProductsAddIndexRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
+    '/dashboard/orders/all/': {
+      id: '/dashboard/orders/all/'
+      path: '/orders/all'
+      fullPath: '/dashboard/orders/all/'
+      preLoaderRoute: typeof DashboardOrdersAllIndexRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
+    '/dashboard/orders/add/': {
+      id: '/dashboard/orders/add/'
+      path: '/orders/add'
+      fullPath: '/dashboard/orders/add/'
+      preLoaderRoute: typeof DashboardOrdersAddIndexRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
+    '/dashboard/landing-pages/all/': {
+      id: '/dashboard/landing-pages/all/'
+      path: '/landing-pages/all'
+      fullPath: '/dashboard/landing-pages/all/'
+      preLoaderRoute: typeof DashboardLandingPagesAllIndexRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
+    '/dashboard/landing-pages/add/': {
+      id: '/dashboard/landing-pages/add/'
+      path: '/landing-pages/add'
+      fullPath: '/dashboard/landing-pages/add/'
+      preLoaderRoute: typeof DashboardLandingPagesAddIndexRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
+    '/dashboard/products/edit/$productId': {
+      id: '/dashboard/products/edit/$productId'
+      path: '/products/edit/$productId'
+      fullPath: '/dashboard/products/edit/$productId'
+      preLoaderRoute: typeof DashboardProductsEditProductIdRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
+    '/dashboard/orders/view/$orderId': {
+      id: '/dashboard/orders/view/$orderId'
+      path: '/orders/view/$orderId'
+      fullPath: '/dashboard/orders/view/$orderId'
+      preLoaderRoute: typeof DashboardOrdersViewOrderIdRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
+    '/dashboard/orders/edit/$orderId': {
+      id: '/dashboard/orders/edit/$orderId'
+      path: '/orders/edit/$orderId'
+      fullPath: '/dashboard/orders/edit/$orderId'
+      preLoaderRoute: typeof DashboardOrdersEditOrderIdRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
   }
 }
 
+interface publicRouteRouteChildren {
+  publicLandingPageLandingPageSlugRoute: typeof publicLandingPageLandingPageSlugRoute
+}
+
+const publicRouteRouteChildren: publicRouteRouteChildren = {
+  publicLandingPageLandingPageSlugRoute: publicLandingPageLandingPageSlugRoute,
+}
+
+const publicRouteRouteWithChildren = publicRouteRoute._addFileChildren(
+  publicRouteRouteChildren,
+)
+
+interface DashboardRouteRouteChildren {
+  DashboardOrdersEditOrderIdRoute: typeof DashboardOrdersEditOrderIdRoute
+  DashboardOrdersViewOrderIdRoute: typeof DashboardOrdersViewOrderIdRoute
+  DashboardProductsEditProductIdRoute: typeof DashboardProductsEditProductIdRoute
+  DashboardLandingPagesAddIndexRoute: typeof DashboardLandingPagesAddIndexRoute
+  DashboardLandingPagesAllIndexRoute: typeof DashboardLandingPagesAllIndexRoute
+  DashboardOrdersAddIndexRoute: typeof DashboardOrdersAddIndexRoute
+  DashboardOrdersAllIndexRoute: typeof DashboardOrdersAllIndexRoute
+  DashboardProductsAddIndexRoute: typeof DashboardProductsAddIndexRoute
+  DashboardProductsAllIndexRoute: typeof DashboardProductsAllIndexRoute
+}
+
+const DashboardRouteRouteChildren: DashboardRouteRouteChildren = {
+  DashboardOrdersEditOrderIdRoute: DashboardOrdersEditOrderIdRoute,
+  DashboardOrdersViewOrderIdRoute: DashboardOrdersViewOrderIdRoute,
+  DashboardProductsEditProductIdRoute: DashboardProductsEditProductIdRoute,
+  DashboardLandingPagesAddIndexRoute: DashboardLandingPagesAddIndexRoute,
+  DashboardLandingPagesAllIndexRoute: DashboardLandingPagesAllIndexRoute,
+  DashboardOrdersAddIndexRoute: DashboardOrdersAddIndexRoute,
+  DashboardOrdersAllIndexRoute: DashboardOrdersAllIndexRoute,
+  DashboardProductsAddIndexRoute: DashboardProductsAddIndexRoute,
+  DashboardProductsAllIndexRoute: DashboardProductsAllIndexRoute,
+}
+
+const DashboardRouteRouteWithChildren = DashboardRouteRoute._addFileChildren(
+  DashboardRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  publicRouteRoute: publicRouteRouteWithChildren,
+  DashboardRouteRoute: DashboardRouteRouteWithChildren,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
+  authSignUpIndexRoute: authSignUpIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
